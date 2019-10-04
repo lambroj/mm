@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="vin" label="Vin" language="en" table="x_64074_mm_motorcycle">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>vin</element>
+            <help/>
+            <hint/>
+            <label>Vin</label>
+            <language>en</language>
+            <name>x_64074_mm_motorcycle</name>
+            <plural>Vins</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>jlambros</sys_created_by>
+            <sys_created_on>2019-05-27 22:46:46</sys_created_on>
+            <sys_id>f176a8b7dbe133000ffd5385ca96190c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Vin</sys_name>
+            <sys_package display_value="mm" source="x_64074_mm">6d5a8763db2133000ffd5385ca9619b5</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="mm">6d5a8763db2133000ffd5385ca9619b5</sys_scope>
+            <sys_update_name>sys_documentation_x_64074_mm_motorcycle_vin_en</sys_update_name>
+            <sys_updated_by>jlambros</sys_updated_by>
+            <sys_updated_on>2019-05-27 22:46:46</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

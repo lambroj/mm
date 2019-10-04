@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_64074_mm_mm.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          rel="stylesheet"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous">
+    </link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!--
+    <script src="x_64074_angularapp.angular_app_client_lo.jsdbx"></script>
+-->
+	<script src="x_64074_mm.mm.jsdbx"></script>
+
+    <div ng-app="angularapp" ng-controller="AngularAppCtrl as appctrl">
+        <div class="container">
+            <div class="row">
+                <!-- Div for the main header -->
+                <div class="col-sm-12 text-center jumbotron">
+					<p>Motorcycle Maintenance</p>
+                </div>
+
+            </div>
+
+            <!-- Modal 2 without directive -->
+            <form name="addForm" class="form-horizontal" role="form" ng-submit="submitUser()">
+                <div class="row" ng-show='showModal'>
+                    <div class="col-sm-12 well" close='cancel()'>
+                        <div class="modal-header">
+                            <h4>Add Motorcycle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label style="text-align: left;" for="addMC.vin" class="col-sm-2 control-label">VIN</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="VIN" placeholder="VIN" ng-model="addMC.vin" required='true' />
+                                </div>
+
+                                <label style="text-align: left;" for="addMC.year" class="col-sm-2 control-label">Year</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="year" placeholder="Year" ng-model="addMC.year" required='true' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="text-align: left;" for="addMC.make" class="col-sm-2 control-label">Make</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="Make" placeholder="Make" ng-model="addMC.make" required='true' />
+                                </div>
+
+                                <label style="text-align: left;" for="addMC.model" class="col-sm-2 control-label">Model</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="model" placeholder="Model" ng-model="addMC.model" required='true' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="text-align: left;" for="addMC.color" class="col-sm-2 control-label">Color</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="Color" placeholder="Make" ng-model="addMC.color" required='true' />
+                                </div>
+
+                                <label style="text-align: left;" for="addMC.engineSize" class="col-sm-2 control-label">Engine Size</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="model" placeholder="Engine Size" ng-model="addMC.engineSize" />
+                                </div>
+                            </div>                                
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" ng-click="ok()" ng-disabled="addForm.$invalid">Okay</button>
+                            <button class="btn" ng-click="cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>    
+            
+            
+            <!-- Div for Customers -->
+            <div class="row">            
+                <div class="col-sm-12 well">        
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a href="#" ng-click="custSortType = 'lastName'; custSortReverse = !custSortReverse">
+                                        Last Name 
+                                        <span ng-show="custSortRev('lastName',!custSortReverse)" class="fa fa-caret-down"></span>
+                                        <span ng-show="custSortRev('lastName',custSortReverse)" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>                                
+                                <th>First Name</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>
+                                    <a href="#" ng-click="custSortType = 'state'; custSortReverse = !custSortReverse">
+                                        State 
+                                        <span ng-show="custSortRev('state',!custSortReverse)" class="fa fa-caret-down"></span>
+                                        <span ng-show="custSortRev('state',custSortReverse)" class="fa fa-caret-up"></span>
+                                    </a>                                    
+                                </th>
+                                <th>Zip</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="cust in customers | orderBy:custSortType:custSortReverse" 
+                                ng-click="selectCustItem(cust.custID)"
+                                ng-class="{selected : cust.custID === custID}">
+                                <td>{{cust.lastName}}</td>                                
+                                <td>{{cust.firstName}}</td>
+                                <td>{{cust.address}}</td>
+                                <td>{{cust.city}}</td>
+                                <td>{{cust.state}}</td>
+                                <td>{{cust.zip}}</td>
+                            </tr>
+                        </tbody>
+                    </table>                        
+                </div>
+            </div>            
+            
+            
+            
+
+            <!-- Div for Main Content -->
+            <div class="row">            
+                <!-- Div for the list of returned motorcycles -->        
+                <div class="col-sm-12 well">
+                    
+                    <!-- Div for the row count -->        
+                    <div class="row">
+                        <div class="col-sm-4">
+                        <table class="table" style="border-bottom: 0px; border-top: 0px;">
+                            <tbody>
+                                <tr>
+                                    <td style="border-bottom: 0px; border-top: 0px;">
+                                        <label for="selectedWindowSize">Rows Displayed</label>
+                                    </td>
+                                    <td style="border-bottom: 0px; border-top: 0px;">
+                                        <select ng-model="selectedWindowSize" ng-change="viewChange()">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <!--<option ng-repeat="x in windowSizes">{{x.size}}</option> -->
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <div class="col-sm-8"></div>
+                    </div>
+                    
+                    <div>
+                        <button ng-click="oopen()">Add Motorcycle</button>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a href="#" ng-click="sortType = 'vin'; sortReverse = !sortReverse">
+                                        VIN 
+                                        <span ng-show="sortRev('vin',!sortReverse)" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortRev('vin',sortReverse)" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="#" ng-click="sortType = 'year'; sortReverse = !sortReverse">
+                                        Year 
+                                        <span ng-show="sortRev('year',!sortReverse)" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortRev('year',sortReverse)" class="fa fa-caret-up"></span>
+                                    </a>                                
+                                </th>
+                                <th>
+                                    <a href="#" ng-click="sortType = 'make'; sortReverse = !sortReverse">
+                                        Make
+                                        <span ng-show="sortRev('make',!sortReverse)" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortRev('make',sortReverse)" class="fa fa-caret-up"></span>
+                                    </a>                                
+                                </th>
+                                <th>
+                                    <a href="#" ng-click="sortType = 'model'; sortReverse = !sortReverse">
+                                        Model 
+                                        <span ng-show="sortRev('model',!sortReverse)" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortRev('model',sortReverse)" class="fa fa-caret-up"></span>
+                                    </a>                                
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="mc in motorcycles | orderBy:sortType:sortReverse | limitTo: windowSize" 
+                                ng-click="selectItem(mc.mcID)"
+                                ng-class="{selected : mc.mcID === mcID}">
+                                <td>{{mc.vin}}</td>
+                                <td>{{mc.year}}</td>
+                                <td>{{mc.make}}</td>
+                                <td>{{mc.model}}</td>
+                            </tr>
+                        </tbody>
+                    </table>                        
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Div for the selected motorcycle specifications    -->
+                <div class="col-sm-6 well">
+                    <div ng-show="vin">
+                        <div class="text-left"><b>Motorcycle Information</b></div>
+                        <table class="table">
+                            <tr>
+                                <td><b>VIN:</b></td><td>{{vin}}</td>
+                                <td><b>Year:</b></td><td>{{year}}</td>      
+                            </tr>
+                            <tr>
+                                <td><b>Make:</b></td><td>{{make}}</td>
+                                <td><b>Model:</b></td><td>{{model}}</td>      
+                            </tr>
+                            <tr>
+                                <td><b>Color:</b></td><td>{{color}}</td>
+                                <td><b>Engine Size:</b></td><td>{{enginesize}}</td>      
+                            </tr>       
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-6"></div>
+            </div>        
+
+        </div>
+
+    </div>
+	
+	
+</j:jelly>]]></html>
+        <name>mm</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>jlambros</sys_created_by>
+        <sys_created_on>2019-05-27 16:49:05</sys_created_on>
+        <sys_id>7b8453ebdb2133000ffd5385ca9619f4</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>mm</sys_name>
+        <sys_package display_value="mm" source="x_64074_mm">6d5a8763db2133000ffd5385ca9619b5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="mm">6d5a8763db2133000ffd5385ca9619b5</sys_scope>
+        <sys_update_name>sys_ui_page_7b8453ebdb2133000ffd5385ca9619f4</sys_update_name>
+        <sys_updated_by>jlambros</sys_updated_by>
+        <sys_updated_on>2019-08-04 02:18:53</sys_updated_on>
+    </sys_ui_page>
+</record_update>

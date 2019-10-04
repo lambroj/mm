@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="motorcycle" max_length="40" name="x_64074_mm_motorcycle" type="collection">
+        <element label="Color" max_length="20" name="color" type="string"/>
+        <element label="Engine Size" max_length="40" name="enginesize" type="string"/>
+        <element label="Make" max_length="40" name="make" type="string"/>
+        <element label="Model" max_length="40" name="model" type="string"/>
+        <element label="Owner" max_length="40" name="owner" type="string"/>
+        <element label="Vin" max_length="40" name="vin" type="string"/>
+        <element label="Year" max_length="4" name="year" type="string"/>
+    </element>
+</database>

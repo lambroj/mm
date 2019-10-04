@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="customer" max_length="40" name="x_64074_mm_customer" type="collection">
+        <element label="City" max_length="40" name="city" type="string"/>
+        <element label="First Name" max_length="40" name="first_name" type="string"/>
+        <element label="Last Name" max_length="40" name="last_name" type="string"/>
+        <element label="State" max_length="20" name="state" type="string"/>
+        <element label="Street Name" max_length="40" name="street_name" type="string"/>
+        <element label="Street Number" max_length="10" name="street_number" type="string"/>
+        <element label="Zip" max_length="20" name="zip" type="string"/>
+    </element>
+</database>

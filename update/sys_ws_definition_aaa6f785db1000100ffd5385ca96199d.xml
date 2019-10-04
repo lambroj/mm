@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition">
+    <sys_ws_definition action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <base_uri>/api/x_64074_mm/jameslambrosrestservice</base_uri>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_version>No active default version</default_version>
+        <doc_link/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <is_versioned>false</is_versioned>
+        <name>jamesLambrosRESTService</name>
+        <namespace>x_64074_mm</namespace>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <service_id>jameslambrosrestservice</service_id>
+        <short_description/>
+        <sys_class_name>sys_ws_definition</sys_class_name>
+        <sys_created_by>jlambros</sys_created_by>
+        <sys_created_on>2019-10-03 17:54:16</sys_created_on>
+        <sys_id>aaa6f785db1000100ffd5385ca96199d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>jamesLambrosRESTService</sys_name>
+        <sys_package display_value="mm" source="x_64074_mm">6d5a8763db2133000ffd5385ca9619b5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="mm">6d5a8763db2133000ffd5385ca9619b5</sys_scope>
+        <sys_update_name>sys_ws_definition_aaa6f785db1000100ffd5385ca96199d</sys_update_name>
+        <sys_updated_by>jlambros</sys_updated_by>
+        <sys_updated_on>2019-10-03 17:54:16</sys_updated_on>
+    </sys_ws_definition>
+</record_update>

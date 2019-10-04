@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role/>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>jlambros</sys_created_by>
+        <sys_created_on>2019-05-27 19:40:36</sys_created_on>
+        <sys_id>03db37afdb6133000ffd5385ca96191b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>83db37afdb6133000ffd5385ca961919</sys_name>
+        <sys_package display_value="mm" source="x_64074_mm">6d5a8763db2133000ffd5385ca9619b5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="mm">6d5a8763db2133000ffd5385ca9619b5</sys_scope>
+        <sys_update_name>sys_embedded_help_role_03db37afdb6133000ffd5385ca96191b</sys_update_name>
+        <sys_updated_by>jlambros</sys_updated_by>
+        <sys_updated_on>2019-05-27 19:40:36</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>

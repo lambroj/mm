@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="" label="motorcycle" language="en" table="x_64074_mm_motorcycle">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element/>
+            <help/>
+            <hint/>
+            <label>motorcycle</label>
+            <language>en</language>
+            <name>x_64074_mm_motorcycle</name>
+            <plural>motorcycles</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>jlambros</sys_created_by>
+            <sys_created_on>2019-05-27 22:36:52</sys_created_on>
+            <sys_id>3834e477dbe133000ffd5385ca961904</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>motorcycle</sys_name>
+            <sys_package display_value="mm" source="x_64074_mm">6d5a8763db2133000ffd5385ca9619b5</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="mm">6d5a8763db2133000ffd5385ca9619b5</sys_scope>
+            <sys_update_name>sys_documentation_x_64074_mm_motorcycle__en</sys_update_name>
+            <sys_updated_by>jlambros</sys_updated_by>
+            <sys_updated_on>2019-05-27 22:36:52</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="ua_table_licensing_config">
+    <ua_table_licensing_config action="INSERT_OR_UPDATE">
+        <is_fulfillment>false</is_fulfillment>
+        <license_condition/>
+        <license_model>none</license_model>
+        <license_roles/>
+        <name>x_64074_mm_customer</name>
+        <op_delete>true</op_delete>
+        <op_insert>true</op_insert>
+        <op_update>true</op_update>
+        <owner_condition/>
+        <sys_class_name>ua_table_licensing_config</sys_class_name>
+        <sys_created_by>jlambros</sys_created_by>
+        <sys_created_on>2019-05-27 22:25:39</sys_created_on>
+        <sys_id>b4a12cf3dbe133000ffd5385ca96191b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_64074_mm_customer</sys_name>
+        <sys_package display_value="mm" source="x_64074_mm">6d5a8763db2133000ffd5385ca9619b5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="mm">6d5a8763db2133000ffd5385ca9619b5</sys_scope>
+        <sys_update_name>ua_table_licensing_config_b4a12cf3dbe133000ffd5385ca96191b</sys_update_name>
+        <sys_updated_by>jlambros</sys_updated_by>
+        <sys_updated_on>2019-05-27 22:25:39</sys_updated_on>
+    </ua_table_licensing_config>
+</record_update>

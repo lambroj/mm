@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_64074_mm.mm</name>
+        <script><![CDATA[//Adding a comment
+angular.module('angularapp',[]);
+angular.module('angularapp').controller('AngularAppCtrl', function($scope){
+	
+    $scope.blankSpace = "&nbsp;&nbsp;";
+    $scope.myVar = '';
+    //$scope.windowSizes = [{size:5}, {size:10}, {size:15}];
+    $scope.selectedWindowSize = "10";
+    $scope.windowSize = 10;
+    
+    $scope.sortType = "vin";
+    $scope.sortReverse = false;
+    
+    $scope.custSortType = 'lastName';
+    $scope.custSortReverse = false;    
+    
+    $scope.vin = '';
+    $scope.customers = [];
+
+    $scope.getMotorcycles = function(id){
+		//console.log('mcID = '+id);
+        $scope.motorcycles = [];
+        var mcRecs = new GlideRecord('x_64074_mm_motorcycle');
+        mcRecs.addQuery('owner',id);
+        mcRecs.orderBy('vin');    
+        mcRecs.query();
+        while(mcRecs.next()){
+            var mcRec = [];
+            mcRec['vin'] = mcRecs.vin;
+            mcRec['year'] = mcRecs.year;
+            mcRec['make'] = mcRecs.make;
+            mcRec['model'] = mcRecs.model;
+            mcRec['color'] = mcRecs.color;
+            mcRec['enginesize'] = mcRecs.enginesize;
+            mcRec['mcID'] = mcRecs.sys_id;
+
+            $scope.motorcycles.push(mcRec);
+        }
+    };
+    
+    $scope.selectCustItem = function(id) {
+        // Set the position indicator to the index value passed in on select
+        $scope.custID = id;
+        // Get the motorcycles owned by this customer
+        $scope.getMotorcycles(id);
+        //Set the first row in the motorcycle table as active
+        $scope.mcID = $scope.motorcycles[0].mcID;    
+        $scope.selectItem($scope.mcID);        
+    };    
+    
+    // Get the initial list of customers
+    var custRecs = new GlideRecord('x_64074_mm_customer');
+    custRecs.orderBy('last_name');
+    custRecs.query();
+    while(custRecs.next()){
+		//console.log('Customer Last Name = '+ custRecs.last_name);
+        var custRec = [];
+        custRec['firstName'] = custRecs.first_name;
+        custRec['lastName'] = custRecs.last_name;
+        custRec['address'] = custRecs.street_number + ' ' + custRecs.street_name;
+        custRec['streetNumber'] = custRecs.street_number;
+        custRec['streetName'] = custRecs.street_name;
+        custRec['city'] = custRecs.city;
+        custRec['state'] = custRecs.state;
+        custRec['zip'] = custRecs.zip;
+        custRec['custID'] = custRecs.sys_id;
+        
+        $scope.customers.push(custRec);
+        //Populate motorcycle for first customer in the list
+        $scope.getMotorcycles($scope.customers[0].custID);
+    }
+    
+    $scope.sortRev = function(prop,sortRev){
+        return (prop == $scope.sortType) && sortRev;
+    };
+    
+    $scope.custSortRev = function(prop,sortRev){
+        return (prop == $scope.custSortType) && sortRev;
+    };    
+    
+    //Modal 2 code
+    $scope.showModal = false;
+    $scope.addMC = {vin: '', year: '', make: '', model: '', color:'', engineSize: ''};
+    $scope.oopen = function() {
+        $scope.showModal = !$scope.showModal;
+    };
+
+    $scope.ok = function() {
+        //console.log($scope.addMC.vin);
+        var mcRec = [];
+        mcRec['vin'] = $scope.addMC.vin;
+        mcRec['year'] = $scope.addMC.year;
+        mcRec['make'] = $scope.addMC.make;
+        mcRec['model'] = $scope.addMC.model;
+        mcRec['color'] = $scope.addMC.color;
+        mcRec['enginesize'] = $scope.addMC.enginesize;
+        mcRec['mcID'] = $scope.addMC.sys_id;
+        mcRec['owner'] = $scope.custID;
+        $scope.motorcycles.unshift(mcRec);
+        
+        var bike = new GlideRecord('x_64074_mm_motorcycle');
+        bike.initialize();
+        bike.vin = $scope.addMC.vin;
+        bike.year = $scope.addMC.year;
+        bike.make = $scope.addMC.make;
+        bike.model = $scope.addMC.model;
+        bike.color = $scope.addMC.color;
+        bike.enginesize = $scope.addMC.engineSize;
+        bike.owner = $scope.custID;
+        bike.insert();
+        
+        $scope.showModal = false;        
+        $scope.addMC = {vin: '', year: '', make: '', model: '', color:'', enginesize: ''};
+
+    };
+
+    $scope.cancel = function() {
+        $scope.showModal = false;
+    };
+    /////////////
+    
+    $scope.viewChange = function() {
+        $scope.windowSize = $scope.selectedWindowSize;
+    }; 
+    
+    $scope.selectItem = function(id) {
+        // Set the position indicator to the index value passed in on select
+        //$scope.mcPos = idx;
+        //var id = $scope.motorcycles[idx].mcID;
+        //console.log('Motorcycle ID: ' + id);
+        $scope.mcID = id;
+        //Obviously $broadcast/$emit/$on is not necessary here because we are only dealing
+        //with only one Controller, we could have processed everything here,
+        //however I used it just for practice
+        $scope.$emit('selectMc', id);
+        //$rootScope.$broadcast('selectMc', id);
+    };
+            
+    $scope.$on('selectMc', function(event,data) {
+        var bike = new GlideRecord('x_64074_mm_motorcycle');
+        bike.get($scope.mcID);
+        $scope.vin = bike.vin;
+        $scope.year = bike.year;
+        $scope.make = bike.make;
+        $scope.model = bike.model;            
+        $scope.enginesize = bike.enginesize;
+        $scope.color = bike.color;                
+        $scope.mcID = bike.sys_id;
+    });
+    
+    //Set the first row in the motorcycle table as active
+    $scope.mcID = $scope.motorcycles[0].mcID;    
+    $scope.selectItem($scope.mcID);
+    //Set the first row in the customer table as active
+    $scope.custID = $scope.customers[0].custID;    
+    $scope.selectCustItem($scope.custID);
+	
+	// Adding dummy function
+	function xx(){}
+	
+});]]></script>
+        <script_name>mm</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>jlambros</sys_created_by>
+        <sys_created_on>2019-05-27 16:42:15</sys_created_on>
+        <sys_id>6642db6bdb2133000ffd5385ca9619b0</sys_id>
+        <sys_mod_count>27</sys_mod_count>
+        <sys_name>x_64074_mm.mm</sys_name>
+        <sys_package display_value="mm" source="x_64074_mm">6d5a8763db2133000ffd5385ca9619b5</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="mm">6d5a8763db2133000ffd5385ca9619b5</sys_scope>
+        <sys_update_name>sys_ui_script_6642db6bdb2133000ffd5385ca9619b0</sys_update_name>
+        <sys_updated_by>jlambros</sys_updated_by>
+        <sys_updated_on>2019-09-20 16:57:28</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
